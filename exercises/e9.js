@@ -3,17 +3,17 @@
  * Please, make sure to read the "09 An-important-rule.md" file in exercises-info folder
  */
 
-
 /**
  * @task
- * Create a function `iterate` that prints the first function argument 
+ * Create a function `iterate` that prints the first function argument
  * (an integer) to it and then returns that argument + 1
  * The function must be exported
  */
 
 export function iterate(arg) {
   // Your code goes here...
-  
+  console.log(arg);
+  return arg + 1;
 }
 
 /**
@@ -24,21 +24,25 @@ export function iterate(arg) {
 
 export function alwaysThrows() {
   // Your code goes here...
-
+  throw new Error("OH NOES");
 }
 
 /**
  * @task
- * Create a function `onReject` that 
+ * Create a function `onReject` that
  * * Takes an argument that can be either error object or a string value
  * * Logs the error object message property value in the console if the argument is an object
  * * Logs the argument value in the console in any other case
  * The function must be exported
  */
 
-export function onReject() {
+export function onReject(arg) {
   // Your code goes here...
-
+  if (arg instanceof Error) {
+    console.log(arg.message);
+  } else {
+    console.log(arg);
+  }
 }
 
 /**
@@ -51,7 +55,7 @@ export function onReject() {
  * * Insert a call to `alwaysThrows` after your 5th call of `iterate`
  * If everything was done correctly the promise will:
  * * log (1, 2, 3, 4, 5)
- * * throw an error that will be handled by the catch() block and log the error message
+ * * throw an error that w ill be handled by the catch() block and log the error message
  * Example: export const promise = Promise.resolve(<Your_resolved_code>)
  *                                  .then(<First_async_iterate_call>)
  *                                  .then(<Second_async_iterate_call>)
@@ -63,9 +67,19 @@ export function onReject() {
  */
 
 // Your code goes here...
-export const promise;
-
-
+export const promise = Promise.resolve(1)
+  .then(iterate)
+  .then(iterate)
+  .then(iterate)
+  .then(iterate)
+  .then(iterate)
+  .then(() => alwaysThrows())
+  .then(iterate)
+  .then(iterate)
+  .then(iterate)
+  .then(iterate)
+  .then(iterate)
+  .catch(onReject);
 
 // === TEST YOURSELF ===
 // Once you're finished run the test with "npm run test-9"

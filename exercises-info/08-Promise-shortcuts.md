@@ -1,4 +1,4 @@
-# PROMISE SHORTCUTS
+cle# PROMISE SHORTCUTS
 
 Promise shortcuts are used more often rather than the full-syntax expressions. The shortcuts are:
 
